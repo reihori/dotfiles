@@ -32,3 +32,5 @@ alias glo="git log --oneline"
 alias glg="git log --oneline --all --graph"
 alias gs="git status"
 alias gw="git switch"
+
+eval "$(sheldon source)"
