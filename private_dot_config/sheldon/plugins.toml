@@ -19,3 +19,6 @@ github = "zsh-users/zsh-autosuggestions"
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'
