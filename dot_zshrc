@@ -14,26 +14,30 @@ setopt HIST_REDUCE_BLANKS
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# abbr
-
-alias h="history"
+alias_cmd=alias
+if [ -d "${HOME}/.zsh/zsh-abbr" ]; then
+	source ${HOME}/.zsh/zsh-abbr/zsh-abbr.zsh
+	alias_cmd=(abbr --session --quiet)
+fi
 
 alias ls="ls --color=auto"
 alias l="ls -1"
 alias la="ls -A"
 alias ll="ls -hl"
 
-alias g="git"
-alias ga="git add"
-alias gau="git add --update"
-alias gc="git commit"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl="git log"
-alias glo="git log --oneline"
-alias glg="git log --oneline --all --graph"
-alias gs="git status"
-alias gw="git switch"
+$alias_cmd h="history"
+
+$alias_cmd g="git"
+$alias_cmd ga="git add"
+$alias_cmd gau="git add --update"
+$alias_cmd gc="git commit"
+$alias_cmd gd="git diff"
+$alias_cmd gds="git diff --staged"
+$alias_cmd gl="git log"
+$alias_cmd glo="git log --oneline"
+$alias_cmd glg="git log --oneline --all --graph"
+$alias_cmd gs="git status"
+$alias_cmd gw="git switch"
 
 if [ -d "${HOME}/.zsh/pure" ]; then
 	fpath+=(${HOME}/.zsh/pure)
