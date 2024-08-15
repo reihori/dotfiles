@@ -35,10 +35,14 @@ alias glg="git log --oneline --all --graph"
 alias gs="git status"
 alias gw="git switch"
 
-fpath+=($HOME/.zsh/pure)
+fpath+=(${HOME}/.zsh/pure)
 autoload -U promptinit && promptinit
 prompt pure
 
-# zsh autosugge
+if [ -d "${HOME}/.zsh/zsh-autosuggestions" ]; then
+	source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
-# zsh highlight
+if [ -d "${HOME}/.zsh/zsh-syntax-highlighting" ]; then
+	source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
