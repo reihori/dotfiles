@@ -1,0 +1,9 @@
+[".zsh/zsh-abbr"]
+type = "git-repo"
+url = "https://github.com/olets/zsh-abbr.git"
+refreshPeriod = "168h"
+
+[".zsh/zsh-autosuggestions"]
+type = "git-repo"
+url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+refreshPeriod = "168h"
