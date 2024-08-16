@@ -21,9 +21,9 @@ if [ -d "${HOME}/.zsh/zsh-abbr" ]; then
 fi
 
 alias ls="ls --color=auto"
-alias l="ls -1"
-alias la="ls -A"
-alias ll="ls -hl"
+$alias_cmd l="ls -1"
+$alias_cmd la="ls -A"
+$alias_cmd ll="ls -hl"
 
 $alias_cmd h="history"
 
