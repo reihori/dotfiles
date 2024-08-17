@@ -25,6 +25,8 @@ $alias_cmd l="ls -1"
 $alias_cmd la="ls -A"
 $alias_cmd ll="ls -hl"
 
+$alias_cmd c="cd"
+
 $alias_cmd h="history"
 
 $alias_cmd g="git"
@@ -55,4 +57,13 @@ fi
 
 if command -v mise > /dev/null; then
 	eval "$(mise activate zsh)"
+fi
+
+if [ -d "${HOME}/.rye" ]; then
+	source "${HOME}/.rye/env"
+fi
+
+if command -v zoxide > /dev/null; then
+	export _ZO_DATA_DIR="${HOME}/.local/share"
+	eval "$(zoxide init zsh)"
 fi
