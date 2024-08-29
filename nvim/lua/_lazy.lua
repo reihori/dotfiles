@@ -27,7 +27,7 @@ require("lazy").setup({
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			local cfg = require("mason-lspconfig")
-			cfg.setup({ ensure_installed = { "lua_ls" } })
+			cfg.setup({ ensure_installed = { "lua_ls", "pyright", "tsserver" } })
 			cfg.setup_handlers({
 				function(server_name)
 					require("lspconfig")[server_name].setup({})
@@ -47,8 +47,8 @@ require("lazy").setup({
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -60,4 +60,15 @@ require("lazy").setup({
 			})
 		end
 	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "lua", "python" },
+				highlight = {
+					enable = true
+				}
+			})
+		end
+	}
 })

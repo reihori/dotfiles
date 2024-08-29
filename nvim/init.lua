@@ -14,3 +14,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.tabstop = 4
 	end
 })
+
+vim.api.nvim_create_user_command("Cfg",
+	function()
+		vim.cmd.edit("~/.config/nvim/init.lua")
+	end,
+	{}
+)
