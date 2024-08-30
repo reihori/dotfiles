@@ -6,6 +6,7 @@ vim.cmd.colorscheme("nightfox")
 
 vim.o.relativenumber = true
 
+vim.keymap.set("n", "<leader><leader>", ":", {})
 vim.keymap.set("n", "<leader>w", "<cmd>update<cr>", {})
 
 local mygroup = vim.api.nvim_create_augroup("mygroup", { clear = true })
@@ -19,7 +20,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_user_command("Cfg",
 	function()
-		vim.cmd.edit("~/.config/nvim/init.lua")
+		local path = vim.fn.stdpath("config")
+		vim.cmd.cd(path)
+		vim.cmd.edit(path .. "/init.lua")
 	end,
 	{}
 )
