@@ -1,4 +1,5 @@
 return {
+	{ "EdenEast/nightfox.nvim" },
 	{ "williamboman/mason.nvim", opts = {} },
 	{
 		"williamboman/mason-lspconfig.nvim",

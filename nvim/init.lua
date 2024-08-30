@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 
 require("_lazy")
 
+vim.cmd.colorscheme("nightfox")
+
 vim.o.relativenumber = true
 
 vim.keymap.set("n", "<leader>w", "<cmd>update<cr>", {})
