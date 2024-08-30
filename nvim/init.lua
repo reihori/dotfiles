@@ -1,8 +1,8 @@
+vim.g.mapleader = " "
+
 require("_lazy")
 
 vim.o.relativenumber = true
-
-vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>w", "<cmd>update<cr>", {})
 
