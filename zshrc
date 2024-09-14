@@ -29,6 +29,8 @@ $alias_cmd c="cd"
 
 $alias_cmd h="history"
 
+$alias_cmd v="vim"
+
 $alias_cmd g="git"
 $alias_cmd ga="git add"
 $alias_cmd gaa="git add --all"
