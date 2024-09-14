@@ -44,6 +44,10 @@ $alias_cmd glp="git log --patch"
 $alias_cmd gs="git status"
 $alias_cmd gw="git switch"
 
+chpwd() {
+	ls
+}
+
 if [ -d "${HOME}/.zsh/pure" ]; then
 	fpath+=(${HOME}/.zsh/pure)
 	autoload -U promptinit && promptinit
