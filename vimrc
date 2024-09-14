@@ -20,4 +20,5 @@ nnoremap <leader>w <cmd>update<cr>
 set laststatus=2
 set noswapfile
 set relativenumber
+set showcmd
 set viminfo=
