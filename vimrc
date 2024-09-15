@@ -6,7 +6,7 @@ let s:jetpackurl = 'https://raw.githubusercontent.com/tani/vim-jetpack/master/pl
 if !filereadable(s:jetpackfile)
 	if executable('curl')
 		let s:cmd = printf('curl -fsSLo %s --create-dirs %s', s:jetpackfile, s:jetpackurl)
-		echo s:cmd
+		echo '> ' .. s:cmd
 		call system(s:cmd)
 		echo 'Jetpack has been installed. Please restart vim and run :JetpackSync command.'
 	else
