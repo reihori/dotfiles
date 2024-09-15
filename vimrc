@@ -1,6 +1,7 @@
 let mapleader = "\<space>"
 
-let s:jetpackfile = expand('<sfile>:p:h') .. '/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
+let s:dotvimdir = $HOME .. '/.vim'
+let s:jetpackfile = s:dotvimdir .. '/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
 let s:jetpackurl = 'https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim'
 if !filereadable(s:jetpackfile)
 	if executable('curl')
