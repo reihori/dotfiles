@@ -1,4 +1,4 @@
-stty stop undef
+stty stop ^x
 
 export LANG="en_US.UTF-8"
 export LESSHISTFILE=-
