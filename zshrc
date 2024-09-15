@@ -75,7 +75,3 @@ if command -v zoxide > /dev/null; then
 	export _ZO_DATA_DIR="${HOME}/.local/share"
 	eval "$(zoxide init zsh)"
 fi
-
-#if command -v fzf > /dev/null; then
-#	FZF_CTRL_T_COMMAND="" FZF_ALT_C_COMMAND="" source <(fzf --zsh)
-#fi
