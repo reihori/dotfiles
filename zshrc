@@ -1,3 +1,4 @@
+# To enable fwd-i-search
 stty stop ^x
 
 export LANG="en_US.UTF-8"
