@@ -9,8 +9,7 @@ if !filereadable(s:jetpackfile)
 	else
 		echo 'You need `curl` to install jetpack.'
 	endif
-endif
-if filereadable(s:jetpackfile)
+else
 	packadd vim-jetpack
 	call jetpack#begin()
 	Jetpack 'tani/vim-jetpack', {'opt': 1} "bootstrap
