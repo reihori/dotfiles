@@ -93,3 +93,6 @@ $alias_cmd glo="git log --oneline"
 $alias_cmd glp="git log --patch"
 $alias_cmd gs="git status"
 $alias_cmd gw="git switch"
+
+$alias_cmd vv="vim ~/.vimrc"
+$alias_cmd vz="vim ~/.zshrc"
