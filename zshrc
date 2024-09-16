@@ -20,6 +20,10 @@ chpwd() {
 	ls
 }
 
+_echo_eval() {
+	echo "> $1"
+	eval $1
+}
 sync_plugins() {
 	local -A plugins
 	plugins=(
@@ -30,14 +34,10 @@ sync_plugins() {
 	)
 	local dir="$HOME/zsh_tmp"
 	if [ -d "$dir" ]; then
-		local cmd="rm -rf $dir"
-		echo "> $cmd"
-		eval $cmd
+		_echo_eval "rm -rf $dir"
 	fi
 	for key in ${(k)plugins}; do
-		local cmd="git clone --depth 1 $plugins[$key] $dir/$key 2> /dev/null"
-		echo "> $cmd"
-		eval $cmd
+		_echo_eval "git clone --depth 1 $plugins[$key] $dir/$key 2> /dev/null"
 	done
 }
 
