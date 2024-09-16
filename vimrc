@@ -33,6 +33,7 @@ nnoremap <leader>w <cmd>update<cr>
 set laststatus=2
 set noswapfile
 set relativenumber
+set shiftwidth=4
 set showcmd
 set smartindent
 set tabstop=4
