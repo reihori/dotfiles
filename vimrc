@@ -34,4 +34,6 @@ set laststatus=2
 set noswapfile
 set relativenumber
 set showcmd
+set smartindent
+set tabstop=4
 set viminfo=
