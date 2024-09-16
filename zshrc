@@ -20,6 +20,8 @@ chpwd() {
 	ls
 }
 
+dotzshdir="$HOME/.zsh"
+
 _echo_eval() {
 	echo "> $1"
 	eval $1
@@ -32,27 +34,26 @@ sync_plugins() {
 		zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 		zsh-abbr https://github.com/olets/zsh-abbr
 	)
-	local dir="$HOME/zsh_tmp"
-	if [ -d "$dir" ]; then
-		_echo_eval "rm -rf $dir"
+	if [ -d "$dotzshdir" ]; then
+		_echo_eval "rm -rf $dotzshdir"
 	fi
 	for key in ${(k)plugins}; do
-		_echo_eval "git clone --depth 1 $plugins[$key] $dir/$key 2> /dev/null"
+		_echo_eval "git clone --depth 1 $plugins[$key] $dotzshdir/$key 2> /dev/null"
 	done
 }
 
-if [ -d "${HOME}/.zsh/pure" ]; then
-	fpath+=(${HOME}/.zsh/pure)
+if [ -d "$dotzshdir/pure" ]; then
+	fpath+=($dotzshdir/pure)
 	autoload -U promptinit && promptinit
 	prompt pure
 fi
 
-if [ -d "${HOME}/.zsh/zsh-autosuggestions" ]; then
-	source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -d "$dotzshdir/zsh-autosuggestions" ]; then
+	source $dotzshdir/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-if [ -d "${HOME}/.zsh/zsh-syntax-highlighting" ]; then
-	source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -d "$dotzshdir/zsh-syntax-highlighting" ]; then
+	source $dotzshdir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 if command -v mise > /dev/null; then
@@ -65,8 +66,8 @@ if command -v zoxide > /dev/null; then
 fi
 
 alias_cmd=alias
-if [ -d "${HOME}/.zsh/zsh-abbr" ]; then
-	source ${HOME}/.zsh/zsh-abbr/zsh-abbr.zsh
+if [ -d "$dotzshdir/zsh-abbr" ]; then
+	source $dotzshdir/zsh-abbr/zsh-abbr.zsh
 	alias_cmd=(abbr --session --quiet)
 fi
 
