@@ -13,14 +13,15 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
 chpwd() {
 	ls
 }
 
 dotzshdir="$HOME/.zsh"
+
+fpath+=($dotzshdir/completions)
+
+plugindir="$dotzshdir/plugins"
 
 _echo_eval() {
 	echo "> $1"
@@ -34,26 +35,26 @@ sync_plugins() {
 		zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 		zsh-abbr https://github.com/olets/zsh-abbr
 	)
-	if [ -d "$dotzshdir" ]; then
-		_echo_eval "rm -rf $dotzshdir"
+	if [ -d "$plugindir" ]; then
+		_echo_eval "rm -rf $plugindir"
 	fi
 	for key in ${(k)plugins}; do
-		_echo_eval "git clone --depth 1 $plugins[$key] $dotzshdir/$key 2> /dev/null"
+		_echo_eval "git clone --depth 1 $plugins[$key] $plugindir/$key 2> /dev/null"
 	done
 }
 
-if [ -d "$dotzshdir/pure" ]; then
-	fpath+=($dotzshdir/pure)
+if [ -d "$plugindir/pure" ]; then
+	fpath+=($plugindir/pure)
 	autoload -U promptinit && promptinit
 	prompt pure
 fi
 
-if [ -d "$dotzshdir/zsh-autosuggestions" ]; then
-	source $dotzshdir/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -d "$plugindir/zsh-autosuggestions" ]; then
+	source $plugindir/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-if [ -d "$dotzshdir/zsh-syntax-highlighting" ]; then
-	source $dotzshdir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -d "$plugindir/zsh-syntax-highlighting" ]; then
+	source $plugindir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 if command -v mise > /dev/null; then
@@ -66,8 +67,8 @@ if command -v zoxide > /dev/null; then
 fi
 
 alias_cmd=alias
-if [ -d "$dotzshdir/zsh-abbr" ]; then
-	source $dotzshdir/zsh-abbr/zsh-abbr.zsh
+if [ -d "$plugindir/zsh-abbr" ]; then
+	source $plugindir/zsh-abbr/zsh-abbr.zsh
 	alias_cmd=(abbr --session --quiet)
 fi
 
@@ -98,3 +99,6 @@ $alias_cmd gw="git switch"
 
 $alias_cmd vv="vim ~/.vimrc"
 $alias_cmd vz="vim ~/.zshrc"
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
