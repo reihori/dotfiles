@@ -14,7 +14,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 chpwd() {
-	ls
+	ls --color=auto
 }
 
 dotzshdir="$HOME/.zsh"
