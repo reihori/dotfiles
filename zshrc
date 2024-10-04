@@ -30,7 +30,6 @@ _echo_eval() {
 sync_plugins() {
 	local -A plugins
 	plugins=(
-		pure https://github.com/sindresorhus/pure.git
 		zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
 		zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 		zsh-abbr https://github.com/olets/zsh-abbr
@@ -42,12 +41,6 @@ sync_plugins() {
 		_echo_eval "git clone --depth 1 $plugins[$key] $plugindir/$key 2> /dev/null"
 	done
 }
-
-if [ -d "$plugindir/pure" ]; then
-	fpath+=($plugindir/pure)
-	autoload -U promptinit && promptinit
-	prompt pure
-fi
 
 if [ -d "$plugindir/zsh-autosuggestions" ]; then
 	source $plugindir/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -99,6 +92,8 @@ $alias_cmd gw="git switch"
 
 $alias_cmd vv="vim ~/.vimrc"
 $alias_cmd vz="vim ~/.zshrc"
+
+eval "$(starship init zsh)"
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
