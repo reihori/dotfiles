@@ -87,6 +87,7 @@ $alias_cmd gl="git log"
 $alias_cmd glg="git log --oneline --all --graph"
 $alias_cmd glo="git log --oneline"
 $alias_cmd glp="git log --patch"
+$alias_cmd gr="git restore"
 $alias_cmd gs="git status"
 $alias_cmd gw="git switch"
 
