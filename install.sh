@@ -1,7 +1,12 @@
 #!/bin/sh
 
 if ! grep -q Ubuntu /etc/os-release; then
-	echo 'This script is only compatible with Ubuntu.'
+	echo 'This script is only compatible with Ubuntu. (exit 1)'
+	exit 1
+fi
+
+if ! command -v git > /dev/null; then
+	echo 'git is required. (exit 1)'
 	exit 1
 fi
 
