@@ -94,7 +94,9 @@ $alias_cmd gw="git switch"
 $alias_cmd vv="vim ~/.vimrc"
 $alias_cmd vz="vim ~/.zshrc"
 
-eval "$(starship init zsh)"
+if command -v starship > /dev/null; then
+	eval "$(starship init zsh)"
+fi
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
