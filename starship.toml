@@ -9,3 +9,9 @@ $character"""
 
 [git_branch]
 symbol = ''
+
+[hostname]
+ssh_symbol = ''
+
+[username]
+format = '[$user]($style) @ '
