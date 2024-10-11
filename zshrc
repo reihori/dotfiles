@@ -5,6 +5,9 @@ export LANG="en_US.UTF-8"
 export LESSHISTFILE=-
 export LSCOLORS=exfxcxdxbxegedabagacad
 export PATH="$HOME/.local/bin:$PATH"
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000
+export SAVEHIST=5000
 
 typeset -U path PATH
 
