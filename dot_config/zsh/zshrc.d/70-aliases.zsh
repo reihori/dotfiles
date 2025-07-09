@@ -1,0 +1,32 @@
+typeset -A aliases
+aliases=(
+    c 'cd'
+    g 'git'
+    ga 'git add'
+    gaa 'git add --all'
+    gau 'git add --update'
+    gb 'git branch'
+    gc 'git commit'
+    gd 'git diff'
+    gds 'git diff --staged'
+    gl 'git log'
+    glg 'git log --oneline --all --graph'
+    glo 'git log --oneline'
+    glp 'git log --patch'
+    gr 'git restore'
+    gs 'git status'
+    gw 'git switch'
+    h 'history'
+    l 'ls -1'
+    la 'ls -A'
+    ll 'ls -lh'
+    lla 'ls -lhA'
+    v 'vim'
+)
+
+if command -v abbr &> /dev/null; then
+    for key val in ${(kv)aliases}; do
+        abbr --session --quiet "$key"="$val"
+    done
+fi
+alias ls="ls --color=auto --group-directories-first"

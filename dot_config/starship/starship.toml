@@ -1,0 +1,17 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character"""
+
+[git_branch]
+symbol = ''
+
+[hostname]
+ssh_symbol = ''
+
+[username]
+format = '[$user]($style) @ '
