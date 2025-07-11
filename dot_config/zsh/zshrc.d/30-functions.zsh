@@ -11,7 +11,7 @@ function dot() {
         echo 'Files differ from chezmoi.'
         return 1
     fi
-    local file="$(chezmoi managed --include=files | fzf --reverse)"
+    local file="$(chezmoi managed --include=files | fzf --height=40% --reverse)"
     local filepath="$HOME/$file"
     if [[ ! -f $filepath ]]; then
         echo "$filepath does not exist."
@@ -20,3 +20,10 @@ function dot() {
     ${EDITOR:-vim} $filepath
     chezmoi add $filepath
 }
+
+function append-pipe-less() {
+    if [[ "$LBUFFER" != *"| less"* ]]; then
+        LBUFFER="$LBUFFER | less"
+    fi
+}
+zle -N append-pipe-less
