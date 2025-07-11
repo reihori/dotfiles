@@ -21,12 +21,10 @@ aliases=(
     la 'ls -A'
     ll 'ls -lh'
     lla 'ls -lhA'
+    ls 'ls --color=auto --group-directories-first'
     v 'vim'
 )
 
-if command -v abbr &> /dev/null; then
-    for key val in ${(kv)aliases}; do
-        abbr --session --quiet "$key"="$val"
-    done
-fi
-alias ls="ls --color=auto --group-directories-first"
+for key val in ${(kv)aliases}; do
+    alias "$key"="$val"
+done
