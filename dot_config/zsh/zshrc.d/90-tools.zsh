@@ -3,8 +3,9 @@ if command -v zoxide &> /dev/null; then
 fi
 
 if command -v lsd &> /dev/null; then
-    alias ls='lsd --group-directories-first --icon=never'
-    alias lt='lsd --tree --icon=never'
+    alias lsd='lsd --group-directories-first --icon=never'
+    alias ls='lsd'
+    alias lt='lsd --tree'
 fi
 
 if command -v abbr &> /dev/null; then
