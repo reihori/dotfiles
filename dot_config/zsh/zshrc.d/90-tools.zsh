@@ -4,6 +4,7 @@ fi
 
 if command -v lsd &> /dev/null; then
     alias ls='lsd --group-directories-first'
+    alias lt='lsd --tree'
 fi
 
 if command -v abbr &> /dev/null; then
