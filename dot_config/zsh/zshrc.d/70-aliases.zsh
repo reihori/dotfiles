@@ -17,7 +17,7 @@ aliases=(
     gs 'git status'
     gw 'git switch'
     h 'history'
-    l 'ls -1'
+    l 'ls'
     la 'ls -A'
     ll 'ls -lh'
     lla 'ls -lhA'
