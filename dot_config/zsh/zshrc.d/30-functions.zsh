@@ -2,7 +2,7 @@ function chpwd() {
     ls --color=auto
 }
 
-function chezmoi-edit-apply() {
+function dot() {
     if ! command -v chezmoi &> /dev/null; then
         echo 'chezmoi is not installed.'
         return 1
