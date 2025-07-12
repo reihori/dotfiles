@@ -1,8 +1,14 @@
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-if [[ -d "$NVM_DIR" ]]; then
+function nvm() {
+    if [[ ! -d "$NVM_DIR" ]]; then
+        echo 'nvm is not installed.'
+        return 1
+    fi
+    unset -f nvm
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+    nvm "$@"
+}
 
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
