@@ -20,13 +20,17 @@ function dot() {
         return 1
     fi
     local file="$(chezmoi managed --include=files | fzf --height=40% --reverse)"
+    if [[ -z "$file" ]]; then
+        echo "Cancelled."
+        return 1
+    fi
     local filepath="$HOME/$file"
     if [[ ! -f $filepath ]]; then
         echo "$filepath does not exist."
         return 1
     fi
     ${EDITOR:-vim} $filepath
-    chezmoi add $filepath
+    chezmoi-readd-all
 }
 
 function append-pipe-less() {
