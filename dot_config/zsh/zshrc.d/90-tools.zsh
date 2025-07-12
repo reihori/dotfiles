@@ -1,3 +1,7 @@
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 function nvm() {
     if [[ ! -d "$NVM_DIR" ]]; then
