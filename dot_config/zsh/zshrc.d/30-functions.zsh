@@ -2,6 +2,14 @@ function chpwd() {
     ls --color=auto
 }
 
+function chezmoi-readd-all() {
+    if ! command -v chezmoi &> /dev/null; then
+        echo 'chezmoi is not installed.'
+        return 1
+    fi
+    chezmoi managed --include=files | xargs -I{} chezmoi add {}
+}
+
 function dot() {
     if ! command -v chezmoi &> /dev/null; then
         echo 'chezmoi is not installed.'
