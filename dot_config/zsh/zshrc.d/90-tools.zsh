@@ -24,6 +24,10 @@ if command -v lsd &> /dev/null; then
     alias lt='lsd --tree'
 fi
 
+if command -v bat &> /dev/null; then
+    alias b='bat'
+fi
+
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
     abbr erase --session --quiet ls
