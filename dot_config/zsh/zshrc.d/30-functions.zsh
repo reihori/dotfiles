@@ -3,17 +3,19 @@ function chpwd() {
 }
 
 function dot() {
-    if ! command -v chezmoi &> /dev/null; then
-        echo 'chezmoi is not installed.'
-        return 1
-    fi
+    for cmd in chezmoi fzf; do
+        if ! command -v "$cmd" &> /dev/null; then
+            echo "$cmd is not installed."
+            return 1
+        fi
+    done
     if [[ -n "$(chezmoi status)" ]]; then
         echo 'Files differ from chezmoi.'
         return 1
     fi
     local file="$(chezmoi managed --include=files | fzf --height=40% --reverse)"
     if [[ -z "$file" ]]; then
-        echo "Cancelled."
+        echo 'Cancelled.'
         return 1
     fi
     local filepath="$HOME/$file"
@@ -21,7 +23,7 @@ function dot() {
         echo "$filepath does not exist."
         return 1
     fi
-    ${EDITOR:-vim} $filepath
+    "${EDITOR:-vim}" "$filepath"
     chezmoi re-add
 }
 
