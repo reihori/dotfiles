@@ -1,3 +1,158 @@
-for file in "$XDG_CONFIG_HOME/zsh/zshrc.d"/*.zsh(N); do
-    source "$file"
+##
+## env
+##
+
+export EDITOR=vim
+
+eval "$(dircolors -b)"
+
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=10000
+SAVEHIST=10000
+
+##
+## path
+##
+
+#path=(
+#    $path
+#)
+#typeset -U path PATH
+#export PATH
+
+##
+## option
+##
+
+setopt AUTO_CD
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
+##
+## function
+##
+
+function chpwd() {
+    ls --color=auto
+}
+
+function append-pipe-less() {
+    if [[ "$LBUFFER" != *"| less"* ]]; then
+        LBUFFER="$LBUFFER | less"
+    fi
+}
+zle -N append-pipe-less
+
+##
+## bindkey
+##
+
+stty stop undef
+bindkey -e
+bindkey '^Xl' append-pipe-less
+
+##
+## completion
+##
+
+fpath=("$XDG_DATA_HOME/zsh/site-functions" $fpath)
+typeset -U fpath FPATH
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+autoload -Uz compinit
+compinit
+
+##
+## plugin
+##
+
+if command -v sheldon &> /dev/null; then
+    eval "$(sheldon source)"
+fi
+
+##
+## alias
+##
+
+typeset -A aliases
+aliases=(
+    c 'cd'
+    g 'git'
+    ga 'git add'
+    gaa 'git add --all'
+    gau 'git add --update'
+    gb 'git branch'
+    gc 'git commit'
+    gd 'git diff'
+    gds 'git diff --staged'
+    gl 'git log'
+    glg 'git log --oneline --all --graph'
+    glo 'git log --oneline'
+    glp 'git log --patch'
+    gr 'git restore'
+    gs 'git status'
+    gw 'git switch'
+    h 'history'
+    l 'ls'
+    la 'ls -A'
+    ll 'ls -lh'
+    lla 'ls -lhA'
+    ls 'ls --color=auto --group-directories-first'
+    v 'vim'
+)
+
+for key val in ${(kv)aliases}; do
+    alias "$key"="$val"
 done
+
+##
+## prompt
+##
+
+if command -v starship &> /dev/null; then
+    export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+    eval "$(starship init zsh)"
+fi
+
+##
+## tool
+##
+
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+function nvm() {
+    if [[ ! -d "$NVM_DIR" ]]; then
+        echo 'nvm is not installed.'
+        return 1
+    fi
+    unset -f nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    nvm "$@"
+}
+
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+if command -v lsd &> /dev/null; then
+    alias lsd='lsd --group-directories-first --icon=never'
+    alias ls='lsd'
+    alias lt='lsd --tree'
+fi
+
+if command -v bat &> /dev/null; then
+    alias b='bat'
+fi
+
+if command -v abbr &> /dev/null; then
+    abbr import-aliases --session --quiet
+    abbr erase --session --quiet ls
+fi
