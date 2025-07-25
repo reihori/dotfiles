@@ -143,6 +143,7 @@ if command -v bat &> /dev/null; then
     alias b='bat'
 fi
 
+# The abbr setting must be the last one.
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
     abbr erase --session --quiet ls
