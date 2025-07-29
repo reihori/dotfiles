@@ -6,6 +6,7 @@ export EDITOR=vim
 
 eval "$(dircolors -b)"
 
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -77,8 +78,8 @@ fi
 ## alias
 ##
 
-typeset -A aliases
-aliases=(
+typeset -A my_aliases
+my_aliases=(
     c 'cd'
     g 'git'
     ga 'git add'
@@ -104,7 +105,7 @@ aliases=(
     v 'vim'
 )
 
-for key val in ${(kv)aliases}; do
+for key val in ${(kv)my_aliases}; do
     alias "$key"="$val"
 done
 
