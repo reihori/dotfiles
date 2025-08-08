@@ -133,5 +133,4 @@ fi
 # The abbr setting must be the last one.
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
-    abbr erase --session --quiet ls
 fi
