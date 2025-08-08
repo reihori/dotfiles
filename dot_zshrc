@@ -1,6 +1,6 @@
-##
-## env
-##
+#-----------------------------
+# env
+#-----------------------------
 
 export EDITOR=vim
 
@@ -10,18 +10,18 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-##
-## option
-##
+#-----------------------------
+# option
+#-----------------------------
 
 setopt AUTO_CD
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-##
-## function
-##
+#-----------------------------
+# function
+#-----------------------------
 
 function chpwd() {
     command ls --color=auto --group-directories-first
@@ -34,17 +34,17 @@ function append-pipe-less() {
 }
 zle -N append-pipe-less
 
-##
-## bindkey
-##
+#-----------------------------
+# bindkey
+#-----------------------------
 
 stty stop undef
 bindkey -e
 bindkey '^Xl' append-pipe-less
 
-##
-## completion
-##
+#-----------------------------
+# completion
+#-----------------------------
 
 fpath=("$XDG_DATA_HOME/zsh/site-functions" $fpath)
 typeset -U fpath FPATH
@@ -56,9 +56,9 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 autoload -Uz compinit
 compinit
 
-##
-## alias
-##
+#-----------------------------
+# alias
+#-----------------------------
 
 typeset -A my_aliases
 my_aliases=(
@@ -91,9 +91,9 @@ for key val in ${(kv)my_aliases}; do
     alias "$key"="$val"
 done
 
-##
-## tool
-##
+#-----------------------------
+# tool
+#-----------------------------
 
 if command -v sheldon &> /dev/null; then
     eval "$(sheldon source)"
