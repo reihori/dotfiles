@@ -117,8 +117,8 @@ if command -v zoxide &> /dev/null; then
 fi
 
 if command -v lsd &> /dev/null; then
-    alias lsd='lsd --group-directories-first --icon=never'
     alias ls='lsd'
+    alias lsd='lsd --group-directories-first --icon=never'
     alias lt='lsd --tree'
 fi
 
