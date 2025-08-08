@@ -24,7 +24,7 @@ setopt HIST_REDUCE_BLANKS
 ##
 
 function chpwd() {
-    ls --color=auto
+    command ls --color=auto --group-directories-first
 }
 
 function append-pipe-less() {
