@@ -116,10 +116,14 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
-if command -v lsd &> /dev/null; then
-    alias ls='lsd'
-    alias lsd='lsd --group-directories-first --icon=never'
-    alias lt='lsd --tree'
+if command -v eza &> /dev/null; then
+    alias eza='eza --group-directories-first --time-style long-iso'
+    alias l='eza'
+    alias la='eza -A'
+    alias ll='eza -lg'
+    alias lla='eza -Alg'
+    alias ls='eza'
+    alias lt='eza --tree'
 fi
 
 if command -v bat &> /dev/null; then
