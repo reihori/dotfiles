@@ -2,8 +2,6 @@
 # env
 #=============================
 
-export EDITOR=vim
-
 eval "$(dircolors -b)"
 
 HISTFILE="$HOME/.zsh_history"
@@ -84,7 +82,6 @@ my_aliases=(
     ll 'ls -lh'
     lla 'ls -lhA'
     ls 'ls --color=auto --group-directories-first'
-    v 'vim'
 )
 
 for key val in ${(kv)my_aliases}; do
@@ -128,6 +125,11 @@ fi
 
 if command -v bat &> /dev/null; then
     alias b='bat'
+fi
+
+if command -v vim &> /dev/null; then
+    export EDITOR=vim
+    alias v='vim'
 fi
 
 # The abbr setting must be the last one.
