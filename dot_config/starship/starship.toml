@@ -1,0 +1,22 @@
+format = """
+$status\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character"""
+
+[status]
+format = '[\($status\)]($style) '
+disabled = false
+
+[git_branch]
+symbol = ''
+
+[hostname]
+ssh_symbol = ''
+
+[username]
+format = '[$user]($style) @ '
