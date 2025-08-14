@@ -25,6 +25,11 @@ function chpwd() {
     command ls --color=auto --group-directories-first
 }
 
+function append-home() {
+    LBUFFER+="~/"
+}
+zle -N append-home
+
 function append-pipe-less() {
     if [[ "$LBUFFER" != *"| less"* ]]; then
         LBUFFER="$LBUFFER | less"
@@ -38,6 +43,7 @@ zle -N append-pipe-less
 
 stty stop undef
 bindkey -e
+bindkey '^Xh' append-home
 bindkey '^Xl' append-pipe-less
 
 #=============================
