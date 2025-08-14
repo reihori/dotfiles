@@ -32,6 +32,7 @@ function chpwd() {
 stty stop undef
 bindkey -e
 bindkey -s '^Xh' '~/'
+bindkey -s '^Xj' ' | '
 bindkey -s '^Xl' ' | less'
 
 #=============================
