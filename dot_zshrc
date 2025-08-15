@@ -87,6 +87,10 @@ done
 # tool
 #=============================
 
+if command -v devbox &> /dev/null; then
+    eval "$(devbox global shellenv)"
+fi
+
 if command -v sheldon &> /dev/null; then
     eval "$(sheldon source)"
 fi
