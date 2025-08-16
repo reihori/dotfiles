@@ -110,7 +110,7 @@ if command -v zoxide &> /dev/null; then
 fi
 
 if command -v eza &> /dev/null; then
-    alias eza='eza --group-directories-first --time-style long-iso'
+    alias eza='eza --group-directories-first --time-style=long-iso'
     alias l='eza'
     alias la='eza -a'
     alias ll='eza -lg'
