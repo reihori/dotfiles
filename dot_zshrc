@@ -73,7 +73,7 @@ my_aliases=(
     la 'ls -A'
     ll 'ls -lh'
     lla 'ls -lhA'
-    ls 'ls --color=auto --group-directories-first'
+    ls 'ls --color=auto --group-directories-first --time-style=long-iso'
 )
 
 for key val in ${(kv)my_aliases}; do
