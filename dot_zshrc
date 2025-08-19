@@ -84,6 +84,10 @@ done
 # tool
 #=============================
 
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
 if command -v sheldon &> /dev/null; then
     eval "$(sheldon source)"
 fi
@@ -91,10 +95,6 @@ fi
 if command -v starship &> /dev/null; then
     export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
     eval "$(starship init zsh)"
-fi
-
-if [[ -f "$HOME/.cargo/env" ]]; then
-    . "$HOME/.cargo/env"
 fi
 
 if command -v mise &> /dev/null; then
