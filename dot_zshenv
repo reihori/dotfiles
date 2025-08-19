@@ -3,11 +3,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-path=(
-    "$HOME/.local/bin"
-    $path
-)
-typeset -U path PATH
+typeset -U path
+path=("$HOME/.local/bin" $path)
 export PATH
 
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
