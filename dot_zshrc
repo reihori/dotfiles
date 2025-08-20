@@ -124,6 +124,11 @@ if command -v vim &> /dev/null; then
     alias v='vim'
 fi
 
+if command -v nvim &> /dev/null; then
+    export EDITOR=nvim
+    alias v='nvim'
+fi
+
 # The abbr setting must be the last one.
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
