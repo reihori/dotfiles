@@ -130,6 +130,10 @@ if command -v nvim &> /dev/null; then
     alias v='nvim'
 fi
 
+if command -v tmux &> /dev/null; then
+    alias t='tmux'
+fi
+
 # The abbr setting must be the last one.
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
