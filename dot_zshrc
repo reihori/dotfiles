@@ -138,6 +138,10 @@ if command -v tmux &> /dev/null; then
     alias t='tmux'
 fi
 
+if command -v trash-put &> /dev/null; then
+    alias rm='trash-put -v'
+fi
+
 # The abbr setting must be the last one.
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
