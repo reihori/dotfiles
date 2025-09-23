@@ -10,12 +10,12 @@ $status\
 $character"""
 
 [git_branch]
-symbol = ''
+symbol = ""
 
 [status]
-format = '[$status]($style) '
+format = "[$status]($style) "
 disabled = false
 
 [character]
-success_symbol = '[>](bold green)'
-error_symbol = '[>](bold red)'
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
