@@ -4,6 +4,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
+$fill\
 $line_break\
 $jobs\
 $status\
@@ -11,6 +12,10 @@ $character"""
 
 [git_branch]
 symbol = ""
+
+[fill]
+symbol = "\u2500"
+style = "green"
 
 [status]
 format = "[$status]($style) "
