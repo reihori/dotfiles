@@ -10,6 +10,12 @@ $jobs\
 $status\
 $character"""
 
+[username]
+format = "[$user]($style)@"
+
+[hostname]
+format = "[$hostname]($style) in "
+
 [git_branch]
 symbol = ""
 
