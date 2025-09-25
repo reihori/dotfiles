@@ -26,7 +26,7 @@ symbol = ""
 
 [fill]
 symbol = "\u2500"
-style = "dimmed green"
+style = "dimmed blue"
 
 [status]
 format = "[$status]($style) "
