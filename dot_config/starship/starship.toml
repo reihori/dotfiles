@@ -9,7 +9,8 @@ $line_break\
 $jobs\
 $status\
 ${custom.character_normal}\
-${custom.character_root}"""
+${custom.character_root}\
+"""
 
 [username]
 format = "[$user]($style)@"
