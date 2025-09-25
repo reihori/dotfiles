@@ -18,6 +18,7 @@ detect_env_vars = ["container"]
 
 [hostname]
 format = "[$hostname]($style) in "
+style = "bold green"
 detect_env_vars = ["container"]
 ssh_only = false
 
