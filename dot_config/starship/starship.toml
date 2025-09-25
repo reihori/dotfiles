@@ -17,7 +17,7 @@ format = "[$user]($style)@"
 detect_env_vars = ["container"]
 
 [hostname]
-format = "[$hostname]($style) in "
+format = "[$hostname]($style) "
 style = "bold green"
 detect_env_vars = ["container"]
 ssh_only = false
