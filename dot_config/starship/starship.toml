@@ -8,7 +8,7 @@ $fill\
 $line_break\
 $jobs\
 $status\
-$character"""
+${custom.character}"""
 
 [username]
 format = "[$user]($style)@"
@@ -30,6 +30,6 @@ style = "green"
 format = "[$status]($style) "
 disabled = false
 
-[character]
-success_symbol = "[>](bold green)"
-error_symbol = "[>](bold red)"
+[custom.character]
+command = 'if [ "$(id -u)" -eq 0 ]; then printf "#"; else printf "%%"; fi'
+when = true
