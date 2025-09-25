@@ -12,9 +12,12 @@ $character"""
 
 [username]
 format = "[$user]($style)@"
+detect_env_vars = ["container"]
 
 [hostname]
 format = "[$hostname]($style) in "
+detect_env_vars = ["container"]
+ssh_only = false
 
 [git_branch]
 symbol = ""
