@@ -31,5 +31,5 @@ format = "[$status]($style) "
 disabled = false
 
 [custom.character]
-command = 'if [ "$(id -u)" -eq 0 ]; then printf "#"; else printf "%%"; fi'
+command = "if [ \"$(id -u)\" -eq 0 ]; then printf '#'; else printf '$'; fi"
 when = true
