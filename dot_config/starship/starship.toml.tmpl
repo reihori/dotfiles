@@ -8,8 +8,7 @@ $fill\
 $line_break\
 $jobs\
 $status\
-${custom.character_normal}\
-${custom.character_root}\
+$character\
 """
 
 [username]
@@ -33,12 +32,11 @@ style = "dimmed blue"
 format = "[$status]($style) "
 disabled = false
 
-[custom.character_normal]
-symbol = '\$ '
-style = "blue"
-when = '[ "$(id -u)" -ne 0 ]'
-
-[custom.character_root]
-symbol = '# '
-style = "bold red"
-when = '[ "$(id -u)" -eq 0 ]'
+[character]
+{{ if eq .chezmoi.uid "0" }}
+success_symbol = '[#](bold red)'
+error_symbol = '[#](bold red)'
+{{ else }}
+success_symbol = '[\$](blue)'
+error_symbol = '[\$](blue)'
+{{ end }}
