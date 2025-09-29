@@ -46,7 +46,7 @@ require("lazy").setup({
       "smoka7/hop.nvim",
       version = "*",
       keys = {
-        { "<Space>", function() require("hop").hint_words() end },
+        { "<Space>", function() require("hop").hint_words() end, mode = "" },
       },
       opts = {},
     },
