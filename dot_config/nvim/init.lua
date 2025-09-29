@@ -1,0 +1,118 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+-- vim.opt.relativenumber = true
+vim.keymap.set("i", "<C-a>", "<Esc>I", { desc = "Move to line start" })
+vim.keymap.set("i", "<C-e>", "<Esc>A", { desc = "Move to line end" })
+vim.keymap.set("i", "<C-f>", "<Right>", { desc = "Move right" })
+vim.keymap.set("i", "<C-b>", "<Left>", { desc = "Move left" })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "lua", "sh", "zsh" },
+  callback = function(ev)
+    local opts = {
+      lua = { shiftwidth = 2, tabstop = 2, softtabstop = 2 },
+      sh = { shiftwidth = 4, tabstop = 4, softtabstop = 4 },
+      zsh = { shiftwidth = 4, tabstop = 4, softtabstop = 4 },
+    }
+    local o = opts[ev.match]
+    if o then
+      for k, v in pairs(o) do
+        vim.opt_local[k] = v
+      end
+    end
+  end,
+})
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = {
+    {
+      "smoka7/hop.nvim",
+      keys = {
+        { "<Space>", function() require("hop").hint_words() end },
+      },
+      opts = {},
+    },
+    {
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("lualine").setup({
+          options = {
+            theme = "wombat",
+            section_separators = "",
+            component_separators = "",
+          },
+        })
+      end,
+    },
+    {
+      "windwp/nvim-autopairs",
+      event = "InsertEnter",
+      opts = {},
+    },
+    {
+      "kylechui/nvim-surround",
+      version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+      -- event = "VeryLazy",
+      opts = {},
+    },
+    {
+      "saghen/blink.cmp",
+      version = "1.*",
+      ---@module "blink.cmp"
+      ---@type blink.cmp.Config
+      opts = {
+        -- "default" (recommended) for mappings similar to built-in completions (C-y to accept)
+        -- "super-tab" for mappings similar to vscode (tab to accept)
+        -- "enter" for enter to accept
+        -- "none" for no mappings
+        --
+        -- All presets have the following mappings:
+        -- C-space: Open menu or open docs if already open
+        -- C-n/C-p or Up/Down: Select next/previous item
+        -- C-e: Hide menu
+        -- C-k: Toggle signature help (if signature.enabled = true)
+        --
+        -- See :h blink-cmp-config-keymap for defining your own keymap
+        keymap = { preset = "default" },
+        appearance = {
+          nerd_font_variant = "mono"
+        },
+        completion = { documentation = { auto_show = false } },
+        sources = { default = { "lsp", "path", "snippets", "buffer" }, },
+        fuzzy = { implementation = "prefer_rust_with_warning" }
+      },
+      opts_extend = { "sources.default" }
+    },
+    -- {
+    --   "catppuccin/nvim",
+    --   config = function()
+    --     vim.cmd.colorscheme("catppuccin-mocha")
+    --   end,
+    -- },
+    {
+      "EdenEast/nightfox.nvim",
+      config = function()
+        vim.cmd.colorscheme("nightfox")
+      end,
+    },
+  },
+  checker = { enabled = true },
+})
