@@ -1,8 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
--- vim.opt.relativenumber = true
+vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
 vim.keymap.set("i", "<C-a>", "<Esc>I", { desc = "Move to line start" })
 vim.keymap.set("i", "<C-e>", "<Esc>A", { desc = "Move to line end" })
 vim.keymap.set("i", "<C-f>", "<Right>", { desc = "Move right" })
