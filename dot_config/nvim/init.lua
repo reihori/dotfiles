@@ -11,9 +11,9 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua", "sh", "zsh" },
   callback = function(ev)
     local opts = {
-      lua = { shiftwidth = 2, tabstop = 2, softtabstop = 2 },
-      sh = { shiftwidth = 4, tabstop = 4, softtabstop = 4 },
-      zsh = { shiftwidth = 4, tabstop = 4, softtabstop = 4 },
+      lua = { shiftwidth = 2, tabstop = 2, softtabstop = 2, expandtab = true },
+      sh = { shiftwidth = 4, tabstop = 4, softtabstop = 4, expandtab = true },
+      zsh = { shiftwidth = 4, tabstop = 4, softtabstop = 4, expandtab = true },
     }
     local o = opts[ev.match]
     if o then
