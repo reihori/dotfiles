@@ -74,12 +74,18 @@ require("lazy").setup({
       opts = {},
     },
     {
+      "shortcuts/no-neck-pain.nvim",
+      version = "*",
+      opts = {},
+    },
+    {
       "saghen/blink.cmp",
+      dependencies = { "rafamadriz/friendly-snippets" },
       version = "1.*",
       ---@module "blink.cmp"
       ---@type blink.cmp.Config
       opts = {
-        keymap = { preset = "super-tab" },
+        keymap = { preset = "default" },
         appearance = { nerd_font_variant = "mono" },
         completion = { documentation = { auto_show = false } },
         sources = { default = { "lsp", "path", "snippets", "buffer" }, },
