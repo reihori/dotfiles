@@ -87,18 +87,31 @@ require("lazy").setup({
       },
       opts_extend = { "sources.default" }
     },
-    -- {
-    --   "catppuccin/nvim",
-    --   config = function()
-    --     vim.cmd.colorscheme("catppuccin-mocha")
-    --   end,
-    -- },
     {
-      "EdenEast/nightfox.nvim",
+      "neovim/nvim-lspconfig",
       config = function()
-        vim.cmd.colorscheme("nightfox")
+        vim.lsp.enable("lua_ls")
       end,
     },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      branch = "main",
+      lazy = false,
+      build = ":TSUpdate",
+      -- opts = {},
+    },
+    {
+      "catppuccin/nvim",
+      config = function()
+        vim.cmd.colorscheme("catppuccin-mocha")
+      end,
+    },
+    -- {
+    --   "EdenEast/nightfox.nvim",
+    --   config = function()
+    --     vim.cmd.colorscheme("nightfox")
+    --   end,
+    -- },
   },
   checker = { enabled = true },
 })
