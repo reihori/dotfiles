@@ -45,7 +45,7 @@ require("lazy").setup({
       "smoka7/hop.nvim",
       version = "*",
       keys = {
-        { "<Space>", function() require("hop").hint_words() end, mode = "" },
+        { "<leader><Space>", function() require("hop").hint_words() end, mode = "" },
       },
       opts = {},
     },
@@ -76,7 +76,6 @@ require("lazy").setup({
     {
       "shortcuts/no-neck-pain.nvim",
       version = "*",
-      opts = {},
     },
     {
       "saghen/blink.cmp",
@@ -92,6 +91,11 @@ require("lazy").setup({
         fuzzy = { implementation = "prefer_rust_with_warning" }
       },
       opts_extend = { "sources.default" }
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      tag = "0.1.8",
+      dependencies = { "nvim-lua/plenary.nvim" },
     },
     {
       "neovim/nvim-lspconfig",
