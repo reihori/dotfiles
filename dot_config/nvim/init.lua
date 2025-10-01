@@ -2,9 +2,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.opt.clipboard = "unnamedplus"
+vim.opt.signcolumn = "yes"
 vim.keymap.set("n", "<Leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
 end)
+vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc>:update<CR>")
 vim.keymap.set("i", "<C-a>", "<Esc>I")
 vim.keymap.set("i", "<C-e>", "<Esc>A")
 vim.keymap.set("i", "<C-b>", "<Left>")
@@ -49,8 +51,7 @@ require("lazy").setup({
       version = "*",
       keys = {
         {
-          -- "<Leader><Space>",
-          "s",
+          "<Leader><Space>",
           function()
             require("hop").hint_words()
           end,
@@ -110,6 +111,15 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
+        vim.lsp.config("lua_ls", {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+            },
+          },
+        })
         vim.lsp.enable({
           "lua_ls",
           "pyright",
