@@ -48,7 +48,13 @@ require("lazy").setup({
       "smoka7/hop.nvim",
       version = "*",
       keys = {
-        { "<Leader><Space>", function() require("hop").hint_words() end, mode = "" },
+        {
+          "<Leader><Space>",
+          function()
+            require("hop").hint_words()
+          end,
+          mode = "",
+        },
       },
       opts = {},
     },
@@ -90,10 +96,10 @@ require("lazy").setup({
         keymap = { preset = "default" },
         appearance = { nerd_font_variant = "mono" },
         completion = { documentation = { auto_show = false } },
-        sources = { default = { "lsp", "path", "snippets", "buffer" }, },
-        fuzzy = { implementation = "prefer_rust_with_warning" }
+        sources = { default = { "lsp", "path", "snippets", "buffer" } },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
       },
-      opts_extend = { "sources.default" }
+      opts_extend = { "sources.default" },
     },
     {
       "nvim-telescope/telescope.nvim",
@@ -108,6 +114,33 @@ require("lazy").setup({
           "pyright",
         })
       end,
+    },
+    {
+      "stevearc/conform.nvim",
+      opts = {
+        formatters_by_ft = {
+          lua = { "stylua" },
+          -- python = { "isort", "black" },
+        },
+        formatters = {
+          stylua = function()
+            local config_path = vim.fn.findfile("stylua.toml", vim.fn.getcwd() .. ";")
+            if config_path ~= "" then
+              return {
+                exe = "stylua",
+                args = { "--config-path", config_path, "-" },
+                stdin = true,
+              }
+            else
+              return {
+                exe = "stylua",
+                args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
+                stdin = true,
+              }
+            end
+          end,
+        },
+      },
     },
     {
       "nvim-treesitter/nvim-treesitter",
