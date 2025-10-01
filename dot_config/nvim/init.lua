@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.opt.clipboard = "unnamedplus"
+vim.opt.list = true
 vim.opt.signcolumn = "yes"
 vim.keymap.set("n", "<Leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
