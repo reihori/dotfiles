@@ -63,15 +63,13 @@ require("lazy").setup({
     {
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require("lualine").setup({
-          options = {
-            theme = "wombat",
-            section_separators = "",
-            component_separators = "",
-          },
-        })
-      end,
+      opts = {
+        -- options = {
+        --   theme = "wombat",
+        --   section_separators = "",
+        --   component_separators = "",
+        -- },
+      },
     },
     {
       "windwp/nvim-autopairs",
@@ -107,6 +105,10 @@ require("lazy").setup({
       "nvim-telescope/telescope.nvim",
       tag = "0.1.8",
       dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "<Leader>f", builtin.find_files, { desc = "Telescope find files" })
+      end,
     },
     {
       "neovim/nvim-lspconfig",
