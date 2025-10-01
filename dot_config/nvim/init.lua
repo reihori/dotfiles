@@ -1,14 +1,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+vim.opt.clipboard = "unnamedplus"
 vim.keymap.set("n", "<Leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
 end)
 vim.keymap.set("i", "<C-a>", "<Esc>I")
 vim.keymap.set("i", "<C-e>", "<Esc>A")
-vim.keymap.set("i", "<C-f>", "<Right>")
 vim.keymap.set("i", "<C-b>", "<Left>")
+vim.keymap.set("i", "<C-f>", "<Right>")
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua", "sh", "zsh" },
   callback = function(ev)
@@ -49,7 +49,8 @@ require("lazy").setup({
       version = "*",
       keys = {
         {
-          "<Leader><Space>",
+          -- "<Leader><Space>",
+          "s",
           function()
             require("hop").hint_words()
           end,
