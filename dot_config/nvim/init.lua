@@ -66,13 +66,7 @@ require("lazy").setup({
     {
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {
-        -- options = {
-        --   theme = "wombat",
-        --   section_separators = "",
-        --   component_separators = "",
-        -- },
-      },
+      opts = {},
     },
     {
       "windwp/nvim-autopairs",
@@ -101,6 +95,7 @@ require("lazy").setup({
         completion = { documentation = { auto_show = false } },
         sources = { default = { "lsp", "path", "snippets", "buffer" } },
         fuzzy = { implementation = "prefer_rust_with_warning" },
+        -- signature = { enabled = true },
       },
       opts_extend = { "sources.default" },
     },
