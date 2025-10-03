@@ -50,6 +50,48 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     {
+      "catppuccin/nvim",
+      config = function()
+        vim.cmd.colorscheme("catppuccin-mocha")
+      end,
+    },
+    -- {
+    --   "EdenEast/nightfox.nvim",
+    --   config = function()
+    --     vim.cmd.colorscheme("nightfox")
+    --   end,
+    -- },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      branch = "main",
+      build = ":TSUpdate",
+      config = function()
+        local langs = {
+          "lua",
+          "python",
+        }
+        require("nvim-treesitter").install(langs)
+        local group = vim.api.nvim_create_augroup("MyTreesitterSetup", { clear = true })
+        vim.api.nvim_create_autocmd("FileType", {
+          group = group,
+          pattern = langs,
+          callback = function(args)
+            vim.treesitter.start(args.buf)
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end,
+        })
+      end,
+    },
+    {
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      opts = {},
+    },
+    {
+      "shortcuts/no-neck-pain.nvim",
+      version = "*",
+    },
+    {
       "smoka7/hop.nvim",
       version = "*",
       keys = {
@@ -64,11 +106,6 @@ require("lazy").setup({
       opts = {},
     },
     {
-      "nvim-lualine/lualine.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {},
-    },
-    {
       "windwp/nvim-autopairs",
       event = "InsertEnter",
       opts = {},
@@ -78,10 +115,6 @@ require("lazy").setup({
       version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
       -- event = "VeryLazy",
       opts = {},
-    },
-    {
-      "shortcuts/no-neck-pain.nvim",
-      version = "*",
     },
     {
       "saghen/blink.cmp",
@@ -153,39 +186,6 @@ require("lazy").setup({
         },
       },
     },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      branch = "main",
-      build = ":TSUpdate",
-      config = function()
-        local langs = {
-          "lua",
-          "python",
-        }
-        require("nvim-treesitter").install(langs)
-        local group = vim.api.nvim_create_augroup("MyTreesitterSetup", { clear = true })
-        vim.api.nvim_create_autocmd("FileType", {
-          group = group,
-          pattern = langs,
-          callback = function(args)
-            vim.treesitter.start(args.buf)
-            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end,
-        })
-      end,
-    },
-    {
-      "catppuccin/nvim",
-      config = function()
-        vim.cmd.colorscheme("catppuccin-mocha")
-      end,
-    },
-    -- {
-    --   "EdenEast/nightfox.nvim",
-    --   config = function()
-    --     vim.cmd.colorscheme("nightfox")
-    --   end,
-    -- },
   },
   checker = { enabled = true },
 })
