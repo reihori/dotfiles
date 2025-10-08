@@ -63,6 +63,7 @@ require("lazy").setup({
     -- },
     {
       "nvim-treesitter/nvim-treesitter",
+      lazy = false,
       branch = "main",
       build = ":TSUpdate",
       config = function()
@@ -71,13 +72,10 @@ require("lazy").setup({
           "python",
         }
         require("nvim-treesitter").install(langs)
-        local group = vim.api.nvim_create_augroup("MyTreesitterSetup", { clear = true })
         vim.api.nvim_create_autocmd("FileType", {
-          group = group,
           pattern = langs,
-          callback = function(args)
-            vim.treesitter.start(args.buf)
-            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          callback = function()
+            vim.treesitter.start()
           end,
         })
       end,
