@@ -162,25 +162,7 @@ require("lazy").setup({
       opts = {
         formatters_by_ft = {
           lua = { "stylua" },
-          -- python = { "isort", "black" },
-        },
-        formatters = {
-          stylua = function()
-            local config_path = vim.fn.findfile("stylua.toml", vim.fn.getcwd() .. ";")
-            if config_path ~= "" then
-              return {
-                exe = "stylua",
-                args = { "--config-path", config_path, "-" },
-                stdin = true,
-              }
-            else
-              return {
-                exe = "stylua",
-                args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
-                stdin = true,
-              }
-            end
-          end,
+          python = { "ruff" },
         },
       },
     },
