@@ -68,6 +68,7 @@ require("lazy").setup({
       build = ":TSUpdate",
       config = function()
         local langs = {
+          "javascript",
           "lua",
           "python",
         }
