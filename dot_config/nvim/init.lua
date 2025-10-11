@@ -4,6 +4,7 @@ vim.g.maplocalleader = "\\"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
+
 vim.keymap.set("n", "<Leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
 end)
@@ -14,6 +15,7 @@ vim.keymap.set("i", "<C-a>", "<Esc>I")
 vim.keymap.set("i", "<C-e>", "<Esc>A")
 vim.keymap.set("i", "<C-b>", "<Left>")
 vim.keymap.set("i", "<C-f>", "<Right>")
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua", "sh", "zsh" },
   callback = function(ev)
@@ -55,12 +57,6 @@ require("lazy").setup({
         vim.cmd.colorscheme("catppuccin-mocha")
       end,
     },
-    -- {
-    --   "EdenEast/nightfox.nvim",
-    --   config = function()
-    --     vim.cmd.colorscheme("nightfox")
-    --   end,
-    -- },
     {
       "nvim-treesitter/nvim-treesitter",
       lazy = false,
