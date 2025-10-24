@@ -22,7 +22,7 @@ setopt SHARE_HISTORY
 # function
 #=============================
 
-if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+if [[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "zed" ]]; then
     function chpwd() {
         command ls --color=auto --group-directories-first
     }
@@ -100,8 +100,8 @@ if command -v sheldon &> /dev/null; then
 fi
 
 if command -v starship &> /dev/null; then
-    if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-        export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship_vscode.toml"
+    if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "zed" ]]; then
+        export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship_simple.toml"
     else
         export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
     fi
