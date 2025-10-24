@@ -22,9 +22,11 @@ setopt SHARE_HISTORY
 # function
 #=============================
 
-function chpwd() {
-    command ls --color=auto --group-directories-first
-}
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    function chpwd() {
+        command ls --color=auto --group-directories-first
+    }
+fi
 
 #=============================
 # bindkey
@@ -98,7 +100,11 @@ if command -v sheldon &> /dev/null; then
 fi
 
 if command -v starship &> /dev/null; then
-    export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+    if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+        export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship_vscode.toml"
+    else
+        export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+    fi
     eval "$(starship init zsh)"
 fi
 
