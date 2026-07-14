@@ -35,127 +35,72 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-  spec = {
-    {
-      "catppuccin/nvim",
-      config = function()
-        vim.cmd.colorscheme("catppuccin-mocha")
-      end,
-    },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      lazy = false,
-      branch = "main",
-      build = ":TSUpdate",
-      config = function()
-        local langs = {
-          "javascript",
-          "lua",
-          "python",
-        }
-        require("nvim-treesitter").install(langs)
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = langs,
-          callback = function()
-            vim.treesitter.start()
-          end,
-        })
-      end,
-    },
-    {
-      "nvim-lualine/lualine.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {},
-    },
-    {
-      "shortcuts/no-neck-pain.nvim",
-      version = "*",
-    },
-    {
-      "smoka7/hop.nvim",
-      version = "*",
-      keys = {
-        {
-          "<Leader><Space>",
-          function()
-            require("hop").hint_words()
-          end,
-          mode = "",
-        },
-      },
-      opts = {},
-    },
-    {
-      "windwp/nvim-autopairs",
-      event = "InsertEnter",
-      opts = {},
-    },
-    {
-      "kylechui/nvim-surround",
-      version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-      event = "VeryLazy",
-      opts = {},
-    },
-    {
-      "saghen/blink.cmp",
-      dependencies = { "rafamadriz/friendly-snippets" },
-      version = "1.*",
-      ---@module "blink.cmp"
-      ---@type blink.cmp.Config
-      opts = {
-        keymap = { preset = "default" },
-        appearance = { nerd_font_variant = "mono" },
-        completion = { documentation = { auto_show = false } },
-        sources = { default = { "lsp", "path", "snippets", "buffer" } },
-        fuzzy = { implementation = "prefer_rust_with_warning" },
-        -- signature = { enabled = true },
-      },
-      opts_extend = { "sources.default" },
-    },
-    {
-      "nvim-telescope/telescope.nvim",
-      tag = "0.1.8",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      config = function()
-        local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<Leader>f", builtin.find_files, { desc = "Telescope find files" })
-      end,
-    },
-    {
-      "neovim/nvim-lspconfig",
-      config = function()
-        vim.lsp.enable({
-          "lua_ls",
-          "pyright",
-        })
-      end,
-    },
-    {
-      "stevearc/conform.nvim",
-      opts = {
-        formatters_by_ft = {
-          lua = { "stylua" },
-          python = { "ruff" },
-        },
-      },
-    },
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "lua",
+    "python",
   },
-  -- checker = { enabled = true },
+  callback = function()
+    vim.treesitter.start()
+  end,
 })
+
+vim.pack.add({
+  "https://github.com/nvim-tree/nvim-web-devicons",
+})
+
+vim.pack.add({
+  "https://github.com/catppuccin/nvim",
+})
+vim.cmd.colorscheme("catppuccin-mocha")
+
+vim.pack.add({
+  "https://github.com/nvim-lualine/lualine.nvim",
+})
+require("lualine").setup()
+
+vim.pack.add({
+  "https://github.com/smoka7/hop.nvim",
+})
+local hop = require("hop")
+hop.setup()
+vim.keymap.set("n", "<Leader><Space>", function()
+  hop.hint_words()
+end)
+
+-- vim.pack.add({
+--   "https://github.com/nvim-lua/plenary.nvim",
+--   "https://github.com/nvim-telescope/telescope.nvim",
+-- })
+-- local ts_builtin = require("telescope.builtin")
+-- vim.keymap.set("n", "<Leader>f", ts_builtin.find_files, { desc = "Telescope find files" })
+
+vim.pack.add({
+  "https://github.com/stevearc/conform.nvim",
+})
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "ruff_format" },
+  },
+})
+
+vim.pack.add({
+  "https://github.com/neovim/nvim-lspconfig",
+})
+vim.lsp.enable({
+  "lua_ls",
+  "pyright",
+})
+
+vim.pack.add({
+  "https://github.com/nvim-mini/mini.nvim",
+})
+require("mini.pairs").setup()
+local MiniPick = require("mini.pick")
+MiniPick.setup()
+vim.keymap.set("n", "<Leader>f", function()
+  MiniPick.builtin.files()
+  -- MiniPick.builtin.files({ tool = 'git' })
+end, { desc = "mini.pick.files" })
