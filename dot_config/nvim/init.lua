@@ -47,38 +47,25 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.pack.add({
+  "https://github.com/catppuccin/nvim",
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/nvim-lualine/lualine.nvim",
+  "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/smoka7/hop.nvim",
+  "https://github.com/stevearc/conform.nvim",
 })
 
-vim.pack.add({
-  "https://github.com/catppuccin/nvim",
-})
 vim.cmd.colorscheme("catppuccin-mocha")
 
-vim.pack.add({
-  "https://github.com/nvim-lualine/lualine.nvim",
-})
 require("lualine").setup()
 
-vim.pack.add({
-  "https://github.com/smoka7/hop.nvim",
-})
 local hop = require("hop")
 hop.setup()
 vim.keymap.set("n", "<Leader><Space>", function()
   hop.hint_words()
 end)
 
--- vim.pack.add({
---   "https://github.com/nvim-lua/plenary.nvim",
---   "https://github.com/nvim-telescope/telescope.nvim",
--- })
--- local ts_builtin = require("telescope.builtin")
--- vim.keymap.set("n", "<Leader>f", ts_builtin.find_files, { desc = "Telescope find files" })
-
-vim.pack.add({
-  "https://github.com/stevearc/conform.nvim",
-})
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
@@ -86,17 +73,11 @@ require("conform").setup({
   },
 })
 
-vim.pack.add({
-  "https://github.com/neovim/nvim-lspconfig",
-})
 vim.lsp.enable({
   "lua_ls",
   "pyright",
 })
 
-vim.pack.add({
-  "https://github.com/nvim-mini/mini.nvim",
-})
 require("mini.pairs").setup()
 local MiniPick = require("mini.pick")
 MiniPick.setup()
