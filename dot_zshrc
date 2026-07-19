@@ -28,6 +28,21 @@ if [[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "zed" ]]; then
     }
 fi
 
+function backward-kill-path() {
+  local left="${BUFFER[1,CURSOR]}"
+  left="${left%/}"
+  if [[ "$left" == */* ]]; then
+    BUFFER="${left%/*}/"
+    CURSOR=${#BUFFER}
+  fi
+}
+
+#=============================
+# zle
+#=============================
+
+zle -N backward-kill-path
+
 #=============================
 # bindkey
 #=============================
@@ -37,6 +52,7 @@ bindkey -e
 bindkey -s '^[h' '~/'
 bindkey -s '^[j' ' | '
 bindkey -s '^[l' ' | less'
+bindkey '^[w' backward-kill-path
 
 #=============================
 # completion
@@ -146,6 +162,14 @@ fi
 
 if command -v trash-put &> /dev/null; then
     alias rm='trash-put -v'
+fi
+
+if command -v wl-copy &> /dev/null; then
+    alias wlc='wl-copy'
+fi
+
+if command -v wl-paste &> /dev/null; then
+    alias wlp='wl-paste'
 fi
 
 # The abbr setting must be the last one.
