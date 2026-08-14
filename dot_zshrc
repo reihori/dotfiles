@@ -55,17 +55,6 @@ bindkey -s '^[l' ' | less'
 bindkey '^[w' backward-kill-path
 
 #=============================
-# completion
-#=============================
-
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-autoload -Uz compinit
-compinit
-
-#=============================
 # alias
 #=============================
 
@@ -176,3 +165,14 @@ fi
 if command -v abbr &> /dev/null; then
     abbr import-aliases --session --quiet
 fi
+
+#=============================
+# completion
+#=============================
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+autoload -Uz compinit
+compinit
