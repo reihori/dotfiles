@@ -175,7 +175,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 autoload -Uz compinit
-compinit
+compinit -C
 
 #=============================
 # local
@@ -183,4 +183,8 @@ compinit
 
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
+fi
+
+if which zprof &> /dev/null; then
+  zprof > /tmp/zprof.log
 fi
