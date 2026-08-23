@@ -1,0 +1,9 @@
+[user]
+	name = "reihori"
+	email = "151887312+reihori@users.noreply.github.com"
+
+[init]
+	defaultBranch = "main"
+
+[include]
+	path = ~/.config/git/local
