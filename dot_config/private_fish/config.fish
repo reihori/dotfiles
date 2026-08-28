@@ -8,9 +8,9 @@ set -gx HOMEBREW_BUNDLE_FILE "$XDG_CONFIG_HOME/homebrew/Brewfile"
 if status is-interactive
     set -g fish_greeting
 
-    bind \eh 'commandline -i "~/"'
-    bind \ej 'commandline -i " | "'
-    bind \el 'commandline -i " | less"'
+    bind alt-a 'commandline -i "~/"'
+    bind alt-j 'commandline -i " | "'
+    bind alt-k __fish_paginate
 
     abbr --add c 'cd'
     abbr --add h 'history'
