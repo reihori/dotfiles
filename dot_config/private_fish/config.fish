@@ -49,10 +49,10 @@ if status is-interactive
 
     if type -q eza
         function l
-            eza --group-directories-first --time-style=long-iso $argv
+            eza --group-directories-first $argv
         end
         function la
-            eza -a --group-directories-first --time-style=long-iso $argv
+            eza -a --group-directories-first $argv
         end
         function ll
             eza -lg --group-directories-first --time-style=long-iso $argv
@@ -61,10 +61,10 @@ if status is-interactive
             eza -alg --group-directories-first --time-style=long-iso $argv
         end
         function ls
-            eza --group-directories-first --time-style=long-iso $argv
+            eza --group-directories-first $argv
         end
         function lt
-            eza --tree --group-directories-first --time-style=long-iso $argv
+            eza --tree --group-directories-first $argv
         end
     end
 
