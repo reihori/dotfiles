@@ -33,6 +33,7 @@ if status is-interactive
 
     if type -q zoxide
         zoxide init fish | source
+        bind alt-z '__zoxide_zi; commandline -f repaint'
     end
 
     if type -q bat
