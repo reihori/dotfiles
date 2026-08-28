@@ -15,6 +15,12 @@ if status is-interactive
     abbr --add c 'cd'
     abbr --add h 'history'
 
+    function __auto_ls --on-variable PWD
+        if status --is-interactive
+            ls
+        end
+    end
+
     if test -f "$HOME/.cargo/env.fish"
         source "$HOME/.cargo/env.fish"
     end
