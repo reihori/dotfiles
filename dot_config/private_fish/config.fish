@@ -1,3 +1,7 @@
+set -gx LANG en_US.UTF-8
+set -gx LC_COLLATE C
+set -gx LC_TIME C
+
 set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx XDG_DATA_HOME "$HOME/.local/share"
