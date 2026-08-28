@@ -21,7 +21,7 @@ if status is-interactive
 
     function __auto_ls --on-variable PWD
         if status --is-interactive
-            ls
+            ls -a
         end
     end
 
