@@ -23,9 +23,10 @@ if status is-interactive
         eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     end
 
-    if type -q mise
-        mise activate fish | source
-    end
+    # Not needed if fish is installed via Homebrew
+    #if type -q mise
+    #    mise activate fish | source
+    #end
 
     if type -q starship
         starship init fish | source
