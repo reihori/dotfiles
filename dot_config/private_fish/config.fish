@@ -33,6 +33,10 @@ if status is-interactive
         eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     end
 
+    if type -q atuin
+        atuin init fish | source
+    end
+
     # Not needed if fish is installed via Homebrew
     #if type -q mise
     #    mise activate fish | source
