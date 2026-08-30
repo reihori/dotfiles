@@ -34,7 +34,7 @@ if status is-interactive
     end
 
     if type -q atuin
-        atuin init fish | source
+        atuin init fish --disable-up-arrow | source
     end
 
     # Not needed if fish is installed via Homebrew
