@@ -8,15 +8,15 @@ vim.opt.signcolumn = "yes"
 vim.keymap.set("n", "<Leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
 end)
-
-vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc>:update<CR>", { silent = true })
-vim.keymap.set({ "n", "i" }, "<C-n>", "<Esc>:bnext<CR>", { silent = true })
-vim.keymap.set({ "n", "i" }, "<C-p>", "<Esc>:bprevious<CR>", { silent = true })
+vim.keymap.set("n", "<C-n>", "<Esc>:bnext<CR>", { silent = true })
+vim.keymap.set("n", "<C-p>", "<Esc>:bprevious<CR>", { silent = true })
 
 vim.keymap.set("i", "<C-a>", "<Esc>I")
 vim.keymap.set("i", "<C-e>", "<Esc>A")
 vim.keymap.set("i", "<C-b>", "<Left>")
 vim.keymap.set("i", "<C-f>", "<Right>")
+
+vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc>:update<CR>", { silent = true })
 
 local indent_configs = {
   fish = { size = 4, expandtab = true },
