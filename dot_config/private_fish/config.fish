@@ -33,8 +33,11 @@ if status is-interactive
         eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     end
 
-    if type -q atuin
-        atuin init fish --disable-up-arrow | source
+    if type -q fzf
+        set -gx FZF_CTRL_R_OPTS '--reverse --with-nth=3..'
+        set -gx FZF_CTRL_T_COMMAND
+        set -gx FZF_ALT_C_COMMAND
+        fzf --fish | source
     end
 
     ## Not needed if fish is installed via Homebrew
