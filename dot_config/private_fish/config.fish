@@ -37,10 +37,10 @@ if status is-interactive
         atuin init fish --disable-up-arrow | source
     end
 
-    # Not needed if fish is installed via Homebrew
-    #if type -q mise
-    #    mise activate fish | source
-    #end
+    ## Not needed if fish is installed via Homebrew
+    # if type -q mise
+    #     mise activate fish | source
+    # end
 
     if type -q starship
         set -gx STARSHIP_CONFIG $XDG_CONFIG_HOME/starship/starship.toml
